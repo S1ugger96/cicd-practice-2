@@ -1,0 +1,26 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check code
+        uses: actions/checkout@v4
+
+      - name: Massage
+        run: echo "Validating PR..."
+
+      - name: list file
+        run: ls -la
+
+  comment:
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - name: RP rady comment
+        run: echo "PR is ready for review!"    
